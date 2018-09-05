@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sử dụng hàm sẵn có của mảng</title>
+</head>
+
+<body>
+  <h1>Bài 1</h1>
+  <p id="NoiChuoi"></p>
+  <h1>Bài 2</h1>
+  <form name="NoiSo">
+    <p>Nhập dãy số</p>
+    <input type="text" name="DaySo" onfocus="this.value=''">
+    <input type="button" value="In Kết quả" onclick="TachDaySo()">
+      </form>
+    <p id="KetQuaNoiSo"></p>
+    <h1>Bài 3</h1>
+    <form name="DoiKyTu">
+      <p>Nhập chuỗi ký tự</p>
+      <input type="text" name="DayKyTu" onfocus="this.value=''">
+      <input type="button" value="In Kết quả" onclick="DoiChuoiKyTu()">
+      </form>
+      <p id="KetQuaKyTu"></p>
+
+      <script type="text/javascript">
+        /* Bai 1 */
+        let myColor = ["Red", "Green", "White", "Black"];
+        let KetQua = myColor.join();
+        document.getElementById('NoiChuoi').innerHTML = KetQua;
+        /*Bai 2*/
+        function TachDaySo() {
+          let Mang = [];
+          let Numbers = document.forms["NoiSo"]["DaySo"].value;
+          if (Number(Numbers) != NaN) {
+            Mang = [Numbers[0]];
+            for (let i = 1; i < Numbers.length; i++) {
+              if (Numbers[i] % 2 == 0 && Numbers[i - 1] % 2 == 0) {
+                Mang.push("-", Numbers[i]);
+              } else {
+                Mang.push(Numbers[i]);
+              }
+            }
+          } else {
+            alert("Please type a number")
+          }
+          document.getElementById("KetQuaNoiSo").innerHTML = Mang.join('');
+        }
+        /*Bai 3 */
+        function DoiChuoiKyTu() {
+          let Chuoi = document.forms["DoiKyTu"]["DayKyTu"].value;
+          let kq = [];
+          for (let i = 0; i < Chuoi.length; i++) {
+            if (Chuoi[i] == Chuoi[i].toUpperCase()) {
+              kq.push(Chuoi[i].toLowerCase());
+            } else {
+              kq.push(Chuoi[i].toUpperCase());
+            }
+          }
+          document.getElementById("KetQuaKyTu").innerHTML = kq.join('');
+        }
+      </script>
+</body>
+
+</html>
