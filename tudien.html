@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Từ điển</title>
+  </head>
+  <body>
+    <h1>Ứng dụng từ điển</h1>
+    <form name="TuDien">
+      <p>Nhập từ tiếng Anh:</p>
+      <input type="text" name="TiengAnh"> <br>
+      <input type="button" value="Translate to Vietnamese" onclick="TraTu()">
+    </form>
+    <p id="TiengViet"></p>
+    <script type="text/javascript">
+    let Anh = ['CAT', 'DOG', 'MOUSE','HORSE'];
+    let Viet = ['Mèo','Chó','Chuột', 'Ngựa'];
+    function TraTu(){
+    Tu = document.forms["TuDien"]["TiengAnh"].value;
+    vt = Anh.indexOf(Tu.toUpperCase());
+    if (vt != -1) {
+      document.getElementById("TiengViet").innerHTML = Viet[vt];
+    } else {
+      document.getElementById("TiengViet").innerHTML = "Không tìm thấy";
+    }
+  }
+    </script>
+  </body>
+</html>
