@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Kiem tra Palindrome</title>
+</head>
+
+<body>
+  <form name="KiemTraPalindrome">
+    <h3>Nhập chuỗi ký tự</h3>
+    <input type="text" name="ChuoiKyTu" value="" onclick="this.value=''">
+    <br>
+    <input type="button" name="KiemTraChuoi" value="Kiểm tra" onclick="KiemTra()">
+    </form>
+    <script type="text/javascript">
+      function KiemTra() {
+        let Chuoi = document.forms["KiemTraPalindrome"]["ChuoiKyTu"].value;
+        function Palindrome(StringIn) {
+          let n = StringIn.length-1;
+          if (n == -1) {
+            return true
+          } else {
+            if (Palindrome(StringIn.substr(1, n - 1)) && (StringIn[0] === StringIn[n])) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        }
+        if (Palindrome(Chuoi)) {
+          alert("This is Palindrome string")
+        } else {
+          alert("This is not Palindrome string")
+        }
+      }
+    </script>
+</body>
+
+</html>
