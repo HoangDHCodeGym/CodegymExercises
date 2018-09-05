@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Caro Game</title>
+</head>
+<body onload="LoadBoard()">
+<h1>Caro game</h1>
+<div id="CaroTable"></div>
+<form name="poschange">
+<p> Input row position: <input type=text name="row"> </p>
+<p> Input column position: <input type=text name="col"> </p>
+<p> <input type = button value="Change value" onclick=ChangeValue()> </p>
+</form>
+<script type="text/javascript">
+	b = document.getElementById('CaroTable');
+	let board = [];
+	for (let i = 0; i < 5; i++) {
+		board[i] = new Array(0,0,0,0,0);
+	}
+	function LoadBoard() {
+	let data = "<p>";
+	for (let i = 0; i < 5; i++) {
+		for (let j = 0; j<5; j++) {
+			data += board[i][j] + " ";
+		}
+		data += "<br>";
+	}
+	data += "</p>";
+	b.innerHTML = data;
+	}
+	function ChangeValue() {
+		rname = document.forms["poschange"]["row"];
+		cname = document.forms["poschange"]["col"];
+		r = Number(rname.value);
+		c = Number(cname.value);
+		if (r!=NaN && c!=NaN) {
+			board[r][c] = "X";
+		} else {alert("Please input a number")}
+		LoadBoard();
+	}
+</script>
+</body>
+</html>
