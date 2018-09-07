@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>Ứng dụng quản lý sản phẩm</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h1>Quản lý sản phẩm</h1>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" id="TenSanPham">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" name="button" onclick="ThemSanPham()">Thêm sản phẩm</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6"></div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <table class="table">
+          <tr>
+            <th>Tên sản phẩm</th>
+            <th>Action</th>
+            <th></th>
+          </tr>
+          <div id="DanhSachSanPham"></div>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  let Board = [];
+  function ThemSanPham() {
+    let name = document.getElementById('TenSanPham').value;
+    Board.push(name);
+    Display();
+  }
+  function Display() {
+    let n=Board.length;
+    let tab = ""
+    for (let i=0; i<n; i++) {
+      tab += "<tr>";
+      tab +=Beboard[i];
+      tab += "</tr>"
+    }
+    document.getElementById("DanhSachSanPham").innerHTML = tab;
+  }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -16,6 +16,7 @@
     <script type="text/javascript">
       function KiemTra() {
         let Chuoi = document.forms["KiemTraPalindrome"]["ChuoiKyTu"].value;
+
         function Palindrome(StringIn) {
           let n = StringIn.length-1;
           if (n == -1) {
@@ -28,6 +29,7 @@
             }
           }
         }
+        
         if (Palindrome(Chuoi)) {
           alert("This is Palindrome string")
         } else {
