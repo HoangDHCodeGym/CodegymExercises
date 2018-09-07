@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Tạo lớp hình chữ nhật</title>
+  <style media="screen">
+    canvas {
+        display: inline-block;
+        border: 2px solid #d3d3d3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Tạo lớp hình chữ nhật</h1>
+  <form name="KichThuoc">
+    <p>Nhập chiều dài:</p>
+    <input type="text" name="ChieuDai" onfocus="this.value=''">
+    <p>Nhập chiều rộng:</p>
+    <input type="text" name="ChieuRong" onfocus="this.value=''">
+    <p>
+      <input type="button" name="KetQua" value="Hiện kết quả" onclick="HienKetQua()">
+    </p>
+  </form>
+  <p id="ChuviDientich"></p>
+  <canvas id="myCanvas" width="200" height="100">
+  <script type="text/javascript">
+    let Rectangle = function(height, width) {
+      this.height = height;
+      this.width = width;
+      this.getArea = function () {
+        return this.height*this.width;
+      }
+      this.getPeri = function() {
+        return (this.height+this.width)*2;
+      }
+      this.drawRec = function() {
+        var c = document.getElementById("myCanvas");
+        let ctx=c.getContext("2d");
+        ctx.rect(20,20,this.height,this.width);
+        ctx.stroke();
+      }
+    }
+    function HienKetQua() {
+      let height = Number(document.forms["KichThuoc"]["ChieuRong"].value);
+      let width = Number(document.forms["KichThuoc"]["ChieuDai"].value);
+      if (height && width) {
+        let rectangle = new Rectangle(height, width);
+        rectangle.drawRec();
+        area = rectangle.getArea();
+        peri = rectangle.getPeri();
+        result = "Diện tích: " + area + "<br>" + "Chu vi: " + peri;
+        document.getElementById("ChuviDientich").innerHTML = result;
+      }
+    }
+  </script>
+  </body>
+</html>
