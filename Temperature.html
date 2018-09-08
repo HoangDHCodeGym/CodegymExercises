@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Lớp mô tả nhiệt độ</title>
+  </head>
+  <body>
+    <h1>Chuyển đổi nhiệt độ</h1>
+    <p>Nhập độ C</p>
+    <input type="text" id="DoC" onfocus="this.value=''">
+    <button type="button" id="DoF" onclick="convertToF()">Đổi sang độ F</button>
+    <button type="button" id="DoK" onclick="convertToK()">Đổi sang độ K</button>
+    <p id="KetQua"></p>
+    <script type="text/javascript">
+      let Temperature = function(temp) {
+        this.Celsius = temp;
+        this.toFahrenheit = function() {
+          return parseFloat(this.Celsius*1.8+32).toFixed(2);
+        }
+        this.toKelvin = function() {
+          return this.Celsius+273;
+        }
+      }
+      function convertToF() {
+        Celsius = Number(document.getElementById('DoC').value);
+        if (Celsius) {
+          let temperature = new Temperature(Celsius);
+          document.getElementById("KetQua").innerHTML = "Độ F: " + temperature.toFahrenheit();
+        }
+      }
+      function convertToK() {
+        Celsius = Number(document.getElementById('DoC').value);
+        if (Celsius) {
+          let temperature = new Temperature(Celsius);
+          document.getElementById("KetQua").innerHTML = "Độ K: " + temperature.toKelvin();
+        }
+      }
+    </script>
+  </body>
+</html>
