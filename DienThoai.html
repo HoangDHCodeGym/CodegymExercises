@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Xây dựng lớp điện thoại</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <style media="screen">
+    textarea, select, .card {
+        max-width: 50%;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Mobile phone control board-->
+        <h1>Nokia</h1>
+        <h4> Status:
+      <input checked data-toggle="toggle" type="checkbox" id="NokiaSwitch">
+    </h4>
+        <h4 id="Battery"></h4>
+        <!-- Message composing with save draft button and send button -->
+        <button class="btn btn-default" data-toggle="collapse" data-target="#ComposeWindow">Compose a message</button>
+        <div id="ComposeWindow" class="collapse">
+          <div class="form-group">
+            <label for="MessageContent">Send to iPhone:</label>
+            <textarea class="form-control" rows="5" id="MessageContent" onfocus="this.value=''"></textarea>
+            <button class="btn btn-primary" type="button" id="SendMessage" name="button">Send message</button>
+            <button class="btn btn-primary" type="button" id="SaveDraft" name="button">Save draft</button>
+            <p id="SendNoti"></p>
+          </div>
+        </div>
+        <br>
+        <!-- View inbox -->
+        <button class="btn btn-default" data-toggle="collapse" data-target="#ViewInbox">Inbox</button>
+        <div id="ViewInbox" class="collapse">
+          <div class="form-group">
+            <label for="MessageList">Inbox</label>
+            <select multiple class="form-control" id="Inbox">
+          </select>
+            <button type="button" class="btn btn-primary" id="OpenMessage">Open message</button>
+            <div class="card card-body" id="ReceivedMessage"></div>
+          </div>
+        </div>
+        <br>
+        <!-- View sent messages -->
+        <button class="btn btn-default" data-toggle="collapse" data-target="#ViewSent">Sent Messages</button>
+        <div id="ViewSent" class="collapse">
+          <div class="form-group">
+            <label for="SentMessage">Sent message</label>
+            <select multiple class="form-control" id="SentMessage">
+          </select>
+            <button type="button" class="btn btn-primary" id="ViewSentMessage">View sent message</button>
+            <div class="card card-body" id="OpenedSentMessage"></div>
+          </div>
+        </div>
+        <br>
+        <!-- Charge phone -->
+        <button class="btn btn-default" type="button" id="Charge">Charge Nokia</button>
+        <p id="ChargeSuccess"></p>
+      </div>
+
+
+
+      <!-- iPhone -->
+      <div class="col-md-6">
+        <h1>iPhone</h1>
+        <h4> Status:
+      <input checked data-toggle="toggle" type="checkbox">
+    </h4>
+        <h4 id="Battery2"></h4>
+        <!-- Message composing with save draft button and send button -->
+        <button class="btn btn-default" data-toggle="collapse" data-target="#ComposeWindow2">Compose a message</button>
+        <div id="ComposeWindow2" class="collapse">
+          <div class="form-group">
+            <label for="MessageContent2">Send to Nokia:</label>
+            <textarea class="form-control" rows="5" id="MessageContent2" onfocus="this.value=''"></textarea>
+            <button class="btn btn-primary" type="button" id="SendMessage2" name="button">Send message</button>
+            <button class="btn btn-primary" type="button" id="SaveDraft2" name="button">Save draft</button>
+            <p id="SendNoti2"></p>
+          </div>
+        </div>
+        <br>
+        <!-- View inbox -->
+        <button class="btn btn-default" data-toggle="collapse" data-target="#ViewInbox2">Inbox</button>
+        <div id="ViewInbox2" class="collapse">
+          <div class="form-group">
+            <label for="Inbox2">Inbox</label>
+            <select multiple class="form-control" id="Inbox2">
+          </select>
+            <button type="button" class="btn btn-primary" id="OpenMessage2">Open message</button>
+            <div class="card card-body" id="ReceivedMessage2"></div>
+          </div>
+        </div>
+        <br>
+        <!-- View sent messages -->
+        <button class="btn btn-default" data-toggle="collapse" data-target="#ViewSent2">Sent Messages</button>
+        <div id="ViewSent2" class="collapse">
+          <div class="form-group">
+            <label for="SentMessage2">Sent message</label>
+            <select multiple class="form-control" id="SentMessage2">
+          </select>
+            <button type="button" class="btn btn-primary" id="ViewSentMessage2">View sent message</button>
+            <div class="card card-body" id="OpenedSentMessage2"></div>
+          </div>
+        </div>
+        <br>
+        <!-- Charge phone -->
+        <button class="btn btn-default" type="button" id="Charge2">Charge iPhone</button>
+        <p id="ChargeSuccess2"><p>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script type="text/javascript">
+  let Phone = function() {
+    this.battery = 100;
+    this.draft = "";
+    this.inbox = [];
+    this.sent = [];
+    this.status = "on";
+
+    this.checkStatus = function() {
+      this.battery -=1;
+      return this.status;
+    }
+
+    this.turnOn = function() {
+      this.status = "on";
+      this.battery -=1;
+    }
+
+    this.turnOff = function() {
+      this.status = "off";
+      this.battery -=1;
+    }
+
+    this.sendMessage = function(target, message) {
+      this.sent.push(message);
+      target.inbox.push(message);
+      this.battery -= 1;
+    }
+
+    this.saveDraft = function(message) {
+      this.draft = message;
+      this.battery -= 1;
+    }
+
+    this.viewInbox = function() {
+      this.battery -=1;
+      return this.inbox;
+    }
+
+    this.viewSent = function() {
+      this.battery -=1;
+      return this.sent;
+    }
+
+    this.charge = function() {
+      this.battery = 100;
+    }
+  }
+  let nokia = new Phone();
+  let iphone = new Phone();
+  $(document).ready(function() {
+    //Nokia functions
+    $("#NokiaSwitch").change(function() {
+      if (this.checked) {
+        nokia.turnOn();
+      } else {
+        nokia.turnOff();
+      }
+    })
+
+    //Send messages from Nokia
+    $("#SendMessage").click(function() {
+      let mess = $.trim($("#MessageContent").val());
+      if (mess) {
+        nokia.sendMessage(iphone,mess);
+        $("#SendNoti").text("Message sent!");
+        let messlist = reloadABox(iphone.inbox);
+        let sentlist = reloadABox(nokia.sent);
+        $("#Inbox2").html(messlist);
+        $("#SentMessage").html(sentlist);
+      } else {
+        alert("Empty message!");
+      }
+    })
+
+    //Send messages from iPhone
+    $("#SendMessage2").click(function() {
+      let mess = $.trim($("#MessageContent2").val());
+      if (mess) {
+        iphone.sendMessage(nokia,mess);
+        $("#SendNoti2").text("Message sent!");
+        let messlist = reloadABox(nokia.inbox);
+        let sentlist = reloadABox(iphone.sent);
+        $("#Inbox").html(messlist);
+        $("#SentMessage2").html(sentlist);
+      } else {
+        alert("Empty message!");
+      }
+    })
+
+    //Save draft of Nokia
+    $("#SaveDraft").click(function() {
+      let mess = $.trim($("#MessageContent").val());
+      if (mess) {
+        nokia.draft = mess;
+        $("#SendNoti").text("Draft saved!");
+      } else {
+        alert("Empty message!");
+      }
+    })
+
+  //Save draft of iphone
+  $("#SaveDraft2").click(function() {
+    let mess = $.trim($("#MessageContent2").val());
+    if (mess) {
+      iphone.draft = mess;
+      $("#SendNoti2").text("Draft saved!");
+    } else {
+      alert("Empty message!");
+    }
+  })
+
+
+
+
+  //View inbox, input is message list
+  function reloadABox(arr) {
+    let MessList = arr;
+    n = MessList.length;
+    result = ""
+    for (let i=0; i<n; i++) {
+      result = result + "<option value='" +i+ "' >"+ MessList[i] + "</option>"
+    }
+    return result;
+  }
+  $("#OpenMessage").click(function(){
+    $("#ReceivedMessage").text($("#Inbox option:selected").text());
+  })
+  $("#OpenMessage2").click(function(){
+    $("#ReceivedMessage2").text($("#Inbox2 option:selected").text());
+  })
+
+  //View sent message
+  $("#ViewSentMessage").click(function(){
+    $("#OpenedSentMessage").text($("#SentMessage option:selected").text());
+  })
+  $("#ViewSentMessage2").click(function(){
+    $("#OpenedSentMessage2").text($("#SentMessage2 option:selected").text());
+  })
+
+  //Charge
+  $("#Charge").click(function() {
+    nokia.charge();
+    $("#ChargeSuccess").text("Charged succesfully!")
+  })
+  $("#Charge2").click(function() {
+    iphone.charge();
+    $("#ChargeSuccess2").text("Charged succesfully!")
+  })
+})
+  </script>
+</body>
+
+</html>
