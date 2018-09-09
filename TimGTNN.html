@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tim GTNN</title>
+  </head>
+  <body>
+    <script>
+    let arr1 = [3, 5, 1, 8, -3, 7, 8];
+    let arr2 = [7, 12, 6, 9, 20, 56, 89];
+    let arr3 = [];
+    let arr4 = [0, 0, 0, 0, 0, 0];
+    function findMinValue(arr) {
+      let n = arr.length;
+      let min;
+      if (n>0) {
+        min = arr[0];
+        for (let i = 1; i<n; i++) {
+          if (arr[i]<min) {
+            min = arr[i];
+          }
+        }
+      } else {
+        min = NaN;
+      }
+      return min;
+    }
+    console.log("Min of arr1:"+findMinValue(arr1));
+    console.log("Min of arr2:"+findMinValue(arr2));
+    console.log("Min of arr3:"+findMinValue(arr3));
+    console.log("Min of arr4:"+findMinValue(arr4));
+    </script>
+  </body>
+</html>
