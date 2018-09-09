@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Luyện tập tạo và sử dụng hàm 2</title>
+  </head>
+  <body>
+    <h1>Bài 1</h1>
+    <button onclick="Bai1()">Bài 1</button>
+    <h1>Bài 2</h1>
+    <button onclick="Bai2()">Bài 2</button>
+    <h1>Bài 3</h1>
+    <button onclick="Bai3()">Bài 3</button>
+    <h1>Bài 4</h1>
+    <button onclick="Bai4()">Bài 4</button>
+    <h1>Bài 5</h1>
+    <button onclick="Bai5()">Bài 5</button>
+    <h1>Bài 6</h1>
+    <button onclick="Bai6()">Bài 6</button>
+    <h1>Bài 7</h1>
+    <button onclick="Bai7()">Bài 7</button>
+    <h1>Bài 8</h1>
+    <button onclick="Bai8()">Bài 8</button>
+    <h1>Bài 9</h1>
+    <button onclick="Bai9()">Bài 9</button>
+    <script>
+    //Bai 1
+    function Bai1() {
+      let num = Number(prompt("Nhập 1 số bất kỳ"));
+      alert("Bình phương "+num+ " là " + Square(num));
+      function Square(number) {
+        let num = Number(number);
+        return num*num;
+      }
+    }
+
+    //Bai 2
+    function Bai2() {
+      let radius = Number(prompt("Nhập bán kính hình tròn"));
+      alert("Chu vi hình tròn là "+Peri(radius));
+      alert("Diện tích hình tròn là "+Area(radius));
+      function Peri(radius) {
+        return parseFloat(radius*2*Math.PI).toFixed(2);
+      }
+      function Area(radius) {
+        return parseFloat(radius*radius*Math.PI).toFixed(2);
+      }
+    }
+
+    //Bai 3
+    function Bai3() {
+      let num = Number(prompt("Nhập một số  nguyên bất kỳ"));
+      if (num>0) {
+        alert("Giai thừa của "+num+" là: "+GiaiThua(num));
+      }
+      function GiaiThua(num) {
+        if (num==1) {return 1}
+        else {return num*GiaiThua(num-1)}
+      }
+    }
+
+    //Bai4
+    function Bai4() {
+      let num = Number(prompt("Nhập 1 ký tự bất kỳ"));
+      if (num) {
+        alert("Đây là ký tự số");
+      } else {
+        alert("Đây không phải ký tự số");
+      }
+    }
+
+    //Bai 5
+    function Bai5() {
+      let a = Number(prompt("Nhập a"));
+      let b = Number(prompt("Nhập b"));
+      let c = Number(prompt("Nhập c"));
+      max = ((a>=b)&&(a>=c) ? a : (b>=c) ? b : c);
+      alert("Giá trị lớn nhất là " + max);
+    }
+
+    //Bai 6
+    function Bai6() {
+      let char = prompt("Nhập 1 ký tự bất kỳ");
+      vowel = "aeiou";
+      if (vowel.indexOf("char") == -1) {
+        alert("Đây không phải nguyên âm");
+      } else {
+        alert("Đây là nguyên âm");
+      }
+    }
+
+    //Bai 7
+    function Bai7() {
+      let a = Number(prompt("Nhập a"));
+      let b = Number(prompt("Nhập b"));
+      let obj = {
+        aVal: a,
+        bVal: b
+      }
+      SwitchVal(obj);
+      alert("a là " + obj.aVal + " và b là " + obj.bVal);
+      function SwitchVal(obj) {
+        bak = obj.aVal;
+        obj.aVal = obj.bVal;
+        obj.bVal = bak;
+      }
+    }
+
+    //Bai 8
+    function Bai8 () {
+      arr = [2,3,5,6,7,4,55,66];
+      result = reverse(arr);
+      alert("Mảng sau đổi chỗ là: " + result);
+      function reverse(arr) {
+        n = Math.floor(arr.length/2)-1;
+        for (i=0; i<=n; i++) {
+          bak = arr[i];
+          arr[i] = arr[arr.length-1-i];
+          arr[arr.length-1-i] = bak;
+        }
+        return arr;
+      }
+    }
+
+    //Bai 9
+    function Bai9() {
+      arrchar = prompt("Nhập chuỗi ký tự");
+      char = prompt("Nhập 1 ký tự");
+      alert("số lần xuất hiện của ký tự "+char+ " là: " + count(char, arrchar));
+      function count(char, arrchar) {
+        n = arrchar.length;
+        c = 0;
+        for (let i=0; i<n; i++) {
+          if (arrchar[i]==char) {
+            c += 1;
+          }
+        }
+        if (c==0) {
+          return -1;
+        } else {
+          return c;
+        }
+      }
+    }
+    </script>
+  </body>
+</html>
