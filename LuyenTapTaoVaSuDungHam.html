@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Luyện tập sử dụng hàm</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>Bài 1</h1>
+    <button onclick="alertMessage()">Click me!</button>
+
+    <h1>Bài 2</h1>
+    <label for="AddNum">Type a number</label>
+    <input type="number" id="AddNum"
+    oninput="result()"
+    onchange="result()">
+    <p id="NumAdded"></p>
+
+    <h1>Bài 3</h1>
+    <label for="NhapA">Nhập A</label>
+    <input type="number" id="NhapA">
+    <label for="NhapB">Nhập B</label>
+    <input type="number" id="NhapB">
+    <button onclick="Sum($('#NhapA').val(),$('#NhapB').val())">Tính tổng</button>
+    <p id="Sum"></p>
+
+    <h1>Bài 4</h1>
+    <button onclick="testResult()">Click to see result</button>
+
+    <h1>Bài 5</h1>
+    <button onclick="findStar()">Find Star</button>
+
+    <script>
+      //Bai 1
+      function alertMessage() {
+        alert("Xin chào");
+      }
+      //Bai 2
+      function increment(num) {
+        return Number(num)+1;
+      }
+      function result()
+      {
+        $("#NumAdded").text(
+          increment($("#AddNum").val())
+        );
+      }
+
+      //Bai 3
+      function Sum(x,y) {
+        let a = Number(x);
+        let b = Number(y);
+        if (a>b) {
+          alert("Vui lòng nhập lại");
+        } else {
+          $("#Sum").text(a+b);
+        }
+      }
+
+      //Bai 4
+      function testResult() {
+        function addNumbers() {
+          let firstNum = 4;
+          let secondNum = 8;
+          result = firstNum + secondNum;
+          return result;
+        }
+        let result = 0;
+        alert(result);
+        result = addNumbers();
+        alert(result);
+      }
+
+      //Bai 5
+      function findStar() {
+        let arr1 = ['Polaris','Aldebaran','Deneb', 'Vega', 'Altair', 'Dubhe','Regulus'];
+        let arr2 = ['Ursa Minor', 'Tarurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major','Leo'];
+        name = prompt("Please type a name:");
+        alert(matchStar(name));
+        function matchStar(name) {
+          let i=0;
+          while (i<arr1.length) {
+            if (name==arr1[i]) {
+              return arr2[i];
+            }
+            i++;
+          }
+          return "not found";
+          }
+        }
+    </script>
+
+  </body>
+</html>
