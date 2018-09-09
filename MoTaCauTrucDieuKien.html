@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Phân loại học viên</title>
+</head>
+
+<body>
+
+  <h2>Nhập điểm học viên:</h2>
+  <input type="text" id="NhapDiem" onfocus="this.value=''">
+  <button type="button" onclick="XepLoai()">Xếp loại</button>
+  <p id="KetQua"></p>
+  <script type="text/javascript">
+  function XepLoai() {
+    let diem = Number(document.getElementById("NhapDiem").value);
+    let ketqua = "";
+    if (diem > 0) {
+      switch (true) {
+        case (diem >= 75):
+          ketqua = "Loại A";
+          break;
+        case (diem >= 60):
+          ketqua = "Loại B";
+          break;
+        case (diem >= 45):
+          ketqua = "Loại C";
+          break;
+        case (diem >= 35):
+          ketqua = "Loại D";
+          break;
+        default:
+          ketqua = "Loại E";
+          break;
+      }
+      document.getElementById('KetQua').innerHTML = ketqua;
+    } else {
+      alert("Vui lòng nhập lại")
+    }
+  }
+  </script>
+</body>
+
+</html>
