@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ứng dụng chuyển đổi tiền tệ</title>
+    <style>
+      table {
+        width: 100%;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ứng dụng chuyển đổi tiền tệ</h1>
+    <table>
+      <tr>
+        <td>
+          <label for="amount">Amount</label>
+          <input type="number" id="amount">
+        </td>
+        <td>
+          <label for="fromCurrency">From Currency</label>
+          <select id="fromCurrency">
+            <option value="USD">USD</option>
+            <option value="JPY">JPY</option>
+            <option value="CAD">CAD</option>
+            <option value="VND">VND</option>
+          </select>
+        </td>
+        <td>
+          <label for="toCurrency">To Currency</label>
+          <select id="toCurrency">
+            <option value="USD">USD</option>
+            <option value="JPY">JPY</option>
+            <option value="CAD">CAD</option>
+            <option value="VND">VND</option>
+          </select>
+        </td>
+        <td>
+          <button onclick="Convert()">Convert</button>
+        </td>
+      </tr>
+    </table>
+    <p id="ConvertResult"></p>
+    <script>
+      function Convert() {
+        let currencyAmount = Number(document.getElementById('amount').value);
+        let originCurrency = document.getElementById("fromCurrency").value;
+        let targetCurrency = document.getElementById("toCurrency").value;
+        const VND = 1;
+        const USD = 23500;
+        const JPY = 209;
+        const CAD = 17700;
+        let toVND = 0;
+        let result = 0;
+        switch (originCurrency) {
+          case "VND":
+            toVND = currencyAmount*VND;
+            break;
+          case "USD":
+            toVND = currencyAmount*USD;
+            break;
+          case "JPY":
+            toVND = currencyAmount*JPY;
+            break;
+          case "CAD":
+            toVND = currencyAmount*CAD;
+        }
+        switch (targetCurrency) {
+          case "VND":
+            result = toVND*VND;
+            break;
+          case "USD":
+            result = toVND/USD;
+            break;
+          case "JPY":
+            result = toVND/JPY;
+            break;
+          case "CAD":
+            result = toVND/CAD;
+        }
+        document.getElementById("ConvertResult").innerHTML = "Result: "+parseFloat(result).toFixed(2);
+      }
+    </script>
+  </body>
+</html>
