@@ -25,8 +25,6 @@ function Hero(image, top, left, size) {
   this.moving = function() {
     this.top += this.orientation[0]*this.speed;
     this.left += this.orientation[1]*this.speed;
-    console.log(this.orientation[0]);
-    console.log(this.orientation[1]);
   }
 }
 
