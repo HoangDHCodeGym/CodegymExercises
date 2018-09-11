@@ -7,6 +7,8 @@ function Hero(image, top, left, size) {
   this.top = top;
   this.left = left;
   this.size = size;
+  this.speed = 40;
+  this.orientation = [1,1];
 
   this.getHeroElement = function() {
     return '<img width="' + this.size + '"' +
@@ -15,43 +17,38 @@ function Hero(image, top, left, size) {
       ' style="top: ' + this.top + 'px; left:' + this.left + 'px;position:absolute;" />';
   }
 
-  this.moveRight = function() {
-    this.left += 40;
-    console.log('ok: ' + this.left);
-  }
-  this.moveLeft = function() {
-    this.left -= 40;
-    console.log('ok: ' + this.left);
-  }
-  this.moveUp = function() {
-    this.top -= 40;
-    console.log('ok: ' + this.top);
-  }
-  this.moveDown = function() {
-    this.top += 40;
-    console.log('ok: ' + this.top);
+  this.changeOrientation = function(top,left) {
+    this.orientation[0] = top;
+    this.orientation[1] = left;
   }
 
+  this.moving = function() {
+    this.top += this.orientation[0]*this.speed;
+    this.left += this.orientation[1]*this.speed;
+    console.log(this.orientation[0]);
+    console.log(this.orientation[1]);
+  }
 }
 
-var hero = new Hero('`kitty.png', 20, 30, 200);
+var hero = new Hero('kitty.png', 50, 50, 200);
 document.getElementById('game').innerHTML = hero.getHeroElement();
 
-function move(evt) {
-  let x = evt.keyCode;
-  console.log(x);
-  if ((x == 38) && (hero.top > 40)) {
-    hero.moveUp();
+function start() {
+  if (hero.top<40) {
+    hero.changeOrientation((-1*hero.orientation[0]),hero.orientation[1]);
   }
-  if ((x == 40) && (hero.top < window.innerHeight - hero.size)) {
-    hero.moveDown();
+  if (hero.left>window.innerWidth-hero.size) {
+    hero.changeOrientation(hero.orientation[0],(-1*hero.orientation[1]));
   }
-  if ((x == 37) && (hero.left > 40)) {
-    hero.moveLeft();
+  if (hero.top>window.innerHeight-hero.size) {
+    hero.changeOrientation((-1*hero.orientation[0]),hero.orientation[1]);
   }
-  if ((x == 39) && (hero.left < window.innerWidth - hero.size)) {
-    hero.moveRight();
+  if (hero.left<40) {
+    hero.changeOrientation(hero.orientation[0],(-1*hero.orientation[1]));
   }
+  hero.moving();
+  console.log("Hello");
   document.getElementById('game').innerHTML = hero.getHeroElement();
+  setTimeout(start, 500);
 }
-document.addEventListener("keypress", move);
+start();
