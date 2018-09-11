@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Biến,kiểu dữ liệu và toán tử</title>
+  </head>
+  <body>
+    <h1>Bài 1</h1>
+    <button onclick="Bai1()">Bài 1</button>
+    <h1>Bài 2</h1>
+    <button onclick="Bai2()">Bài 2</button>
+    <h1>Bài 3</h1>
+    <button onclick="Bai3()">Bài 3</button>
+    <h1>Bài 4</h1>
+    <button onclick="Bai4()">Bài 4</button>
+    <script>
+      //Bai 1
+      function Bai1() {
+        let diemVatLy = Number(prompt("Nhập điểm Vật Lý:"));
+        let diemHoa = Number(prompt("Nhập điểm Hóa:"));
+        let diemSinh = Number(prompt("Nhập điểm Sinh:"));
+        let tong = (diemVatLy+diemHoa+diemSinh);
+        let diemTrungBinh = parseFloat(tong/3).toFixed(2);
+        alert("Tổng điểm là: "+tong+" và điểm trung bình là: "+ diemTrungBinh);
+      }
+
+      //Bai 2
+      function Bai2() {
+        let Fahrenheit = Number(prompt("Nhập độ Fahrenheit:"))
+        let Celcius = parseFloat((Fahrenheit-32)/1.8).toFixed(2);
+        alert("Độ Celcius là: " + Celcius);
+      }
+
+      //Bai 3
+      function Bai3() {
+        let radius = Number(prompt("Nhập bán kính hình tròn:"));
+        peripheral = parseFloat(radius*2*Math.PI).toFixed(2);
+        alert("Chu vi hình tròn: " + peripheral);
+      }
+
+      //Bai 4
+      function Bai4() {
+        let radius = Number(prompt("Nhập bán kính hình tròn:"));
+        area = parseFloat(radius*radius*Math.PI).toFixed(2);
+        alert("Diện tích hình tròn: " + area);
+      }
+
+    </script>
+  </body>
+</html>
