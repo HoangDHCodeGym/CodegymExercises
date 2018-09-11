@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>ứng dụng máy tính</title>
+</head>
+
+<body>
+  <p>
+    <input type="number" id="inputNumber1">
+    <input type="number" id="inputNumber2">
+  </p>
+  <p>
+    <button onclick="Calc('add')">Addition(+)</button>
+    <button onclick="Calc('sub')">Subtraction(-)</button>
+    <button onclick="Calc('multi')">Multiplication(*)</button>
+    <button onclick="Calc('divi')">Division(/)</button>
+  </p>
+  <p id="Result"></p>
+  <script>
+    function Calc(oper) {
+      number1 = Number(document.getElementById("inputNumber1").value);
+      number2 = Number(document.getElementById("inputNumber2").value);
+      let result = 0;
+      switch (oper) {
+        case "add":
+          result = number1+number2;
+          break;
+        case "sub":
+          result = number1-number2;
+          break;
+        case "multi":
+          result = number1*number2;
+          break;
+        case "divi":
+          result = number1/number2;
+      }
+      document.getElementById("Result").innerHTML = result;
+    }
+
+  </script>
+</body>
+</html>
