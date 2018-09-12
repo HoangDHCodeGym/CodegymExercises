@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Làm máy tính đơn giản</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+    .container {
+        max-width: 50%;
+        border-style: solid;
+      }
+    .row {
+      margin: 10px;
+      padding: 3px;
+    }
+    .large-text {
+      font-weight: 600;
+      font-size: 25px;
+    }
+      input {
+        text-align: right;
+      }
+      button {
+        border-style: solid;
+        border-radius: 3px;
+        font-size: 20px;
+        font-weight: 300;
+        width: 90%;
+        height: 100%;
+        margin: 10px;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <input id="InputBox" type="text" class="form-control large-text" aria-label="Large">
+    </div>
+      <!-- Row 1 -->
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('1')">1</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('2')">2</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('3')">3</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('+')">+</button>
+        </div>
+      </div>
+      <!-- End Row 1 -->
+
+      <!-- Row 2 -->
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('4')">4</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('5')">5</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('6')">6</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('-')">-</button>
+        </div>
+      </div>
+      <!-- End Row 2 -->
+
+      <!-- Row 3 -->
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('7')">7</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('8')">8</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('9')">9</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('X')">X</button>
+        </div>
+      </div>
+      <!-- End Row 3 -->
+
+      <!-- Row 4 -->
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('C')">C</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('0')">0</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('=')">=</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary" onclick="CalcInput('/')">/</button>
+        </div>
+      </div>
+      <!-- End Row 4 -->
+    </div>
+    <!-- End Container -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script>
+      function printInput(InputStr) {
+        let inputbox = document.getElementById("InputBox");
+        inputbox.value += InputStr;
+      }
+      function clearInput() {
+        document.getElementById("InputBox").value = '';
+      }
+      function printResult() {
+        let inputbox = document.getElementById("InputBox");
+        let mathexp = inputbox.value.replace('X','*');
+        if (mathexp) {
+          inputbox.value = eval(mathexp);
+        }
+      }
+      function CalcInput(inputname) {
+        switch (inputname) {
+          case 'C':
+            clearInput();
+            break;
+          case '=':
+            printResult();
+            break;
+          default:
+            printInput(inputname);
+        }
+      }
+    </script>
+</body>
+
+</html>
