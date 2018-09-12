@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Kiểm tra ký tự đầu</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      str = prompt("Please type a string");
+      function testFirstCharacter() {
+        regex = /^[A-Z]/;
+        if (regex.test(str)) {
+          alert("The first letter is upper case");
+        } else {
+          alert("The first letter is not upper case");
+        }
+      }
+      testFirstCharacter();
+    </script>
+
+  </body>
+</html>
