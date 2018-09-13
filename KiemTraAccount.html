@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Kiểm tra account</title>
+  </head>
+  <body>
+    <script>
+      account = prompt("Nhập tên account:");
+      function checkAccount(account) {
+        let regex = /^[_a-z0-9]{6,}$/;
+        if (regex.check(account)) {
+          alert("Account hợp lệ");
+        } else {
+          alert("Account không hợp lệ");
+        }
+      }
+      checkAccount(account);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Kiểm tra email</title>
+  </head>
+  <body>
+    <label for="KiemtraEmail">Nhập Email</label>
+    <input type="text" onkeydown="testEmail()" id="KiemtraEmail">
+    <p id='result'></p>
+    <script>
+      function testEmail() {
+        userinput = document.getElementById('KiemtraEmail');
+        email = userinput.value;
+        regex = /^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$/
+        if (regex.test(email)) {
+          document.getElementById('result').innerHTML = "valid";
+        } else {
+            document.getElementById('result').innerHTML = "invalid";
+        }
+      }
+    </script>
+  </body>
+</html>
