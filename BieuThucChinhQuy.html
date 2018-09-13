@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>Bài 1</h1>
+    <p>Kiểm tra chuỗi có dạng dd/mm/yyyy</p>
+    <label for="Bai1"></label>
+    <input type="text" id="Bai1">
+    <button onclick="Bai1()">Kiểm tra</button>
+
+    <h1>Bài 2</h1>
+    <p>Đếm số từ trong một chuỗi</p>
+    <label for="Bai2"></label>
+    <input type="text" id="Bai2">
+    <button onclick="Bai2()">Kiểm tra</button>
+
+
+    <h1>Bài 3</h1>
+    <p>Đếm số nguyên âm phụ âm</p>
+    <label for="Bai3"></label>
+    <input type="text" id="Bai3">
+    <button onclick="Bai3()">Kiểm tra</button>
+
+    <h1>Bài 4</h1>
+    <p>Kiểm tra mã số bảo mật hợp lệ</p>
+    <label for="Bai4"></label>
+    <input type="text" id="Bai4">
+    <button onclick="Bai4()">Kiểm tra</button>
+
+    <script>
+        function Bai1() {
+            let inputStr = document.getElementById("Bai1")
+            let str = inputStr.value;
+            let regex = /[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4,}/
+            if (regex.test(str)) {
+                alert("Valid date");
+            } else {
+                alert("Invalid date");
+            }
+        }
+
+        function Bai2() {
+            let inputStr = document.getElementById("Bai2")
+            let str = inputStr.value;
+            let arr = str.split(" ");
+            let n = arr.length;
+            let count = 0
+            let specialChar = "\!\?\.\,\:"
+            for (let i = 0; i < n; i++) {
+                if ((arr[i]!="")&&(specialChar.indexOf(arr[i])==-1)) {
+                    count +=1;
+                }
+            }
+            alert("Number of words is: "+ count);
+        }
+
+        function Bai3() {
+            let inputStr = document.getElementById("Bai3");
+            let str = inputStr.value;
+            let regexVowel = /[aeiouAEIOU]/;
+            let regexFull = /[A-Za-z]/;
+            let vowel = 0;
+            let consonant = 0;
+            let n = str.length;
+            for (let i = 0; i<n; i++) {
+                if (regexFull.test(str[i])) {
+                    if (regexVowel.test(str[i])) {
+                        vowel +=1;
+                    } else {
+                        consonant +=1;
+                    }
+                }
+            }
+            alert("Number of vowel is"+vowel+" and number of consonant is"+ consonant);
+        }
+
+        function Bai4() {
+            let inputStr = document.getElementById("Bai4");
+            let str = inputStr.value;
+            let regexUpperCase = /[A-Z]/;
+            let regexNumber = /[0-9]/;
+            switch (false) {
+                case regexUpperCase.test(str):
+                    alert("You need at least 1 upper case character");
+                    break;
+                case regexNumber.test(str):
+                    alert("You need at least 1 number");
+                    break;
+                default:
+                    alert("Valid password");
+            }
+        }
+    </script>
+</body>
+
+</html>
