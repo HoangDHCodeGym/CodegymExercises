@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Luyện tập cấu trúc điều kiện</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div>
+        <h1>Bài 1</h1>
+        <label for="NhapA">Nhập a</label>
+        <input type="number" id="NhapA">
+        <label for="NhapB">Nhập b</label>
+        <input type="number" id="NhapB">
+        <button onclick="Bai1()">Kiểm tra</button>
+    </div>
+    <div>
+        <h1>Bài 2</h1>
+        <label for="NhapTuoi">Nhập tuổi học sinh</label><input type="number" id="NhapTuoi">
+        <button onclick="Bai2()">Kiểm tra tuổi vào lớp 10</button>
+    </div>
+    <div>
+        <h1>Bài 3</h1>
+        <label for="NhapSoNguyen">Nhập số nguyên bất kỳ</label><input type="number" id="NhapSoNguyen">
+        <button onclick="Bai3()">Kiểm tra số nguyên</button>
+
+    </div>
+    <div>
+        <h1>Bài 4</h1>
+        <label for="Nhap1">Nhập số thứ 1</label><input type="number" id="Nhap1">
+        <label for="Nhap2">Nhập số thứ 2</label><input type="number" id="Nhap2">
+        <label for="Nhap3">Nhập số thứ 3</label><input type="number" id="Nhap3">
+        <button onclick="Bai4()">Tìm số lớn nhất</button>
+
+    </div>
+    <div>
+        <h1>Bài 5</h1>
+        <label for="diemKiemTra">Nhập điểm kiểm tra</label><input type="number" max="10" id="diemKiemTra">
+        <label for="diemGiuaKy">Nhập điểm giữa kỳ</label><input type="number" max="10" id="diemGiuaKy">
+        <label for="diemCuoiKy">Nhập điểm cuối kỳ</label><input type="number" max="10" id="diemCuoiKy">
+        <button onclick="Bai5()">Xếp loại học sinh</button>
+
+    </div>
+    <div>
+        <h1>Bài 6</h1>
+        <label for="DoanhThu">Nhập doanh thu</label><input type="number" id="DoanhThu">
+        <label for="HoaHong">Nhập tỷ lệ hoa hồng theo %</label><input type="number" max="100" id="HoaHong">
+        <button onclick="Bai6()">Tính hoa hồng</button>
+    </div>
+    <div>
+        <h1>Bài 7</h1>
+        <label for="SoPhut"></label>Nhập số phút gọi<input type="number" id="SoPhut">
+        <label for="TienCuoc"></label>Nhập tiền cước 1 phút<input type="number" id="TienCuoc">
+        <button onclick="Bai7()">Tính tiền cước</button>
+
+    </div>
+    <script>
+        function Bai1() {
+            a = Number(document.getElementById("NhapA").value);
+            b = Number(document.getElementById("NhapB").value);
+            if (a%b==0) {alert("a chia hết cho b")} else {alert("a không chia hết cho b")};
+        }
+        function Bai2() {
+            tuoi = Number(document.getElementById("NhapTuoi").value);
+            if (tuoi>=15) {alert("Đủ điều kiện nhập học")} else (alert("Không đủ điều kiện nhập học"));
+        }
+        function Bai3() {
+            so = Number(document.getElementById("NhapSoNguyen").value);
+            if (so>0) {alert("Đây là số dương")} else if (so<0) {alert("Đây là số âm")} else {alert("Đây là số 0")};
+        }
+        function Bai4() {
+            so1 = Number(document.getElementById("Nhap1").value);
+            so2 = Number(document.getElementById("Nhap2").value);
+            so3 = Number(document.getElementById("Nhap3").value);
+            let max;
+            if ((so1>so2)&&(so1>so3)) {max=so1} else if (so2>so3) {max=so2} else {max=so3};
+            alert("So lớn nhất là "+max);
+        }
+        function Bai5() {
+            diemKT = Number(document.getElementById("diemKiemTra").value);
+            diemGK = Number(document.getElementById("diemGiuaKy").value);
+            diemCK = Number(document.getElementById("diemCuoiKy").value);
+            diemTB = (diemKT + diemGK*2 + diemCK*3)/6;
+            switch (true) {
+                case diemTB<5:
+                    alert("Không đạt");
+                    break;
+                case diemTB<6.5:
+                    alert("Loại trung bình");
+                    break;
+                case diemTB<8:
+                    alert("Loại khá");
+                    break;
+                default:
+                    alert("Loại giỏi");
+            }
+        }
+        function Bai6() {
+            doanhthu = Number(document.getElementById("DoanhThu").value);
+            hoahong = Number(document.getElementById("HoaHong").value);
+            alert("Hoa hồng là " + parseFloat(doanhthu*hoahong/100).toFixed(2));
+        }
+        function Bai7() {
+            sophut = Number(document.getElementById("SoPhut").value);
+            tiencuoc = Number(document.getElementById("TienCuoc").value);
+            alert("Tiền cước điện thoại là "+ sophut*tiencuoc); 
+}
+
+    </script>
+</body>
+</html>
