@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+        let arr = [];
+        for (let i=0; i<100; i++) {
+            randomValue = Math.floor(Math.random()*100);
+            arr.push(randomValue);
+        }
+        console.log(arr);
+        bubbleSort(arr);
+        console.log(arr);
+       let instance = Number(prompt("Nhập một số bất kỳ:"));
+       let result = binarySearch(0,arr.length,instance);
+        alert("Số lần xuất hiện của " + instance+ " là: "+result);
+        function bubbleSort(arr) {
+            n = arr.length;
+            for (let i = 0; i<n; i++) {
+                for (let j=i+1; j<n; j++) {
+                    if (arr[i]>arr[j]) {
+                        swap(arr,i,j)
+                    }
+                }
+            }
+            function swap(arr,i,j) {
+                let bk = arr[i];
+                arr[i] = arr[j];
+                arr[j] = bk;
+            }
+        }
+
+        function binarySearch(left,right,value) {
+            let count = 0;
+            console.log(left+" "+right);
+            if (right>=left) {
+                mid = left + Math.floor((right-left)/2);
+                if (arr[mid] == value) {
+                    count = 1;
+                }
+                if ((arr[mid+1]==value) || (arr[mid]<value)) {
+                    count += binarySearch(mid+1,right,value);
+                } else if ((arr[mid-1]==value) || (arr[mid]>value)) {
+                    count += binarySearch(left,mid-1,value);
+                }
+            }
+            return count;
+        }
+
+    </script>
+</body>
+</html>
