@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Product Mannagement</h1>
+        </div>
+        <!-- Add new product -->
+        <div class="row">
+            <h3>Add new product</h3>
+            <div class="input-group mb-3 input-group-lg">
+                <input type="text" class="form-control" placeholder="Product's name" aria-label="Product's name"
+                    aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#IDaddedSuccessfully">Add</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Product list -->
+        <div class="row">
+            <h2>Product List</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sample 1</td>
+                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#IDeditProduct">Edit</button></td>
+                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#IDdeleteConfirmation">Delete</button></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!--Product added successfully-->
+        <div id="IDaddedSuccessfully" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="alert alert-success">
+                    <strong>Success!</strong> Indicates a successful or positive action.
+                </div>
+            </div>
+        </div>
+
+        <!--Delete confirmation box-->
+        <div class=row>
+            <div class="modal" id="IDdeleteConfirmation" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete a product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure to delete this product?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Add new product-->
+        <div class="row">
+            <div class="modal" id="IDeditProduct" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete a product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="IDproductName">Name of Product</label>
+                            <input id="IDproductName" type="text">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+</body>
+
+</html>
