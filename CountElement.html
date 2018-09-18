@@ -13,9 +13,8 @@
             randomValue = Math.floor(Math.random()*100);
             arr.push(randomValue);
         }
-        console.log(arr);
         bubbleSort(arr);
-        console.log(arr);
+        document.write(arr);
        let instance = Number(prompt("Nhập một số bất kỳ:"));
        let result = binarySearch(0,arr.length,instance);
         alert("Số lần xuất hiện của " + instance+ " là: "+result);
