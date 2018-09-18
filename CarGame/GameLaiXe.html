@@ -14,8 +14,8 @@
             height: 40px;
             width: 80px;
             position: absolute;
-            top: 50px;
-            left: 50px;
+            top: 60px;
+            left: 60px;
             transition: all 0.3s ease-in;
         }
 
@@ -23,30 +23,40 @@
             height: 600px;
             width: 1100px;
             position: absolute;
-            top: 50px;
-            left: 50px;
+            top: 60px;
+            left: 60px;
             border: 2px solid black;
         }
 
-        .Bomb {
+        .fruit,
+        .bomb {
             height: 40px;
             width: 40px;
+            position: absolute;
         }
-
-        .Fruit {
-            height: 40px;
-            width: 40px;
+        #life {
+            color: red;
+            position: absolute;
+            top: 5px;
+            left: 850px;
+        }
+        #score {
+            color: yellowgreen;
+            position: absolute;
+            top: 5px;
+            left: 700px;
         }
     </style>
 </head>
 
 <body>
-    <h1>Game lái xe</h1>
+    <h1>Game Lái xe</h1>
     <div id="Field">
     </div>
     <img src="car.png" alt="" id="Car">
-    <img src="bomb.png" class="Bomb">
-    <img src="fruit.png" class="Fruit">
+    <h3 id="score">Score: 0</h3>
+    <h3 id="life">Life: 3</h3>
+
     <script src="colliding.js"></script>
     <script>
         let Car = function (id, maxwidth, maxheight) {
@@ -59,7 +69,7 @@
             this.maxwidth = maxwidth;
             this.maxheight = maxheight;
             this.moveUp = function (step) {
-                if (this.top > 40) {
+                if (this.top > 60) {
                     this.top -= step;
                 }
                 this.orientation = "-90deg";
@@ -71,7 +81,7 @@
                 this.orientation = "90deg";
             }
             this.moveLeft = function (step) {
-                if (this.left > 40) {
+                if (this.left > 60) {
                     this.left -= step;
                 }
                 this.orientation = "180deg";
@@ -94,51 +104,81 @@
                 c = $(this.id);
                 c.css("top", this.top + "px");
                 c.css("left", this.left + "px");
-                c.css("transform","rotate("+this.orientation+")");
+                c.css("transform", "rotate(" + this.orientation + ")");
             }
         }
 
-        let FruitAndBomb = function(id,name,top,left) {
+        let FruitAndBomb = function (id, name, top, left) {
             this.exist = true;
             this.id = id;
             this.name = name;
             this.top = top;
             this.left = left;
-            this.image = function() {
-                if (this.name=="bomb") {
+            this.image = function () {
+                if (this.name == "bomb") {
                     return "bomb.png";
                 }
-                if (this.name=="fruit") {
+                if (this.name == "fruit") {
                     return "fruit.png";
                 }
-            }            
-            this.collision = function() {
+            }
+            this.collision = function () {
                 this.exist = false;
                 this.delete();
             }
-            this.delete = function() {
+            this.delete = function () {
                 c = $(this.id);
-                c.css("display","none");
+                c.css("display", "none");
             }
         }
 
-        function drawFruitandBomb() {
+        function drawFruitandBomb(name) {
             result = "";
-            for (let i=0; i<10; i++) {
-                let top = Math.floor(Math.random()*50)+50;
-                let left = Math.floor(Math.random()*1000)+50;
-                let fruit = new FruitAndBomb("fruit"+i,"fruit",top,left);
-                result += "<img src='" + fruit.image() + "' id='fruit-"+i+"' class='Fruit' >";
-                console.log(result+" "+top+" "+left);
-                c = $("#fruit-"+i);
-                c.css("position","absolute");
-                c.css("top",top+"px");
-                c.css("left",left+"px");
+            let arr = [];
+            for (let i = 0; i < 10; i++) {
+                let top = Math.floor(Math.random() * (MAXHEIGHT-90)) + 50;
+                let left = Math.floor(Math.random() * (MAXWIDTH-90)) + 50;
+                let obstacle = new FruitAndBomb(name + i, name, top, left);
+                result += "<img src='" + obstacle.image() + "' id='" + name + "-" + i + "' class=" + name + ">";
+                arr.push(obstacle);
             }
-            $("#Field").html(result);
+            $("#Field").append(result);
+            for (let i = 0; i < 10; i++) {
+                $("#" + name + "-" + i).css("top", arr[i].top + "px");
+                $("#" + name + "-" + i).css("left", arr[i].left + "px");
+            }
         }
-        let car = new Car("#Car", 1000, 500);
-        drawFruitandBomb();
+
+        function Collision(name) {
+            for (let i = 0; i < 10; i++) {
+                let id = "#" + name + "-" + i;
+                if ($(id).length) {
+                    if (is_colliding($(id), $("#Car"))) {
+                        if (name=="bomb") {
+                            $(id).prop("src","explosion.png");
+                            alert("You hitted a bomb");
+                        }
+                        $(id).remove();
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        function displayScore(car) {
+            $("#score").text("Score: "+car.score);
+        }
+
+        function displayLife(car) {
+            $("#life").text("Life: "+car.life);
+        }
+
+        const MAXWIDTH = 1100;
+        const MAXHEIGHT = 600;
+        let car = new Car("#Car", MAXWIDTH, MAXHEIGHT);
+        drawFruitandBomb("fruit");
+        drawFruitandBomb("bomb");
         //move car
         $(document).keydown(function (event) {
             let step = 40;
@@ -157,6 +197,22 @@
             if (event.which == 39) {
                 car.moveRight(step);
                 car.drawCar();
+            }
+            if (Collision("fruit")) {
+                car.score += 1;
+                displayScore(car);
+                if (car.score == 9) {
+                    alert('You won!')
+                    location.reload();
+                }
+            }
+            if (Collision("bomb")) {
+                car.life -= 1;
+                displayLife(car);
+                if (car.death()) {
+                    alert("Game over!");
+                    location.reload();
+                }
             }
         })
     </script>
