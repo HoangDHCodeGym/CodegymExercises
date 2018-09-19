@@ -25,12 +25,15 @@
         </div>
         <!-- Add new product -->
         <div class="row">
-            <h3>Add new product</h3>
-            <div class="input-group mb-3 input-group-lg">
-                <input type="text" class="form-control" placeholder="Product's name" aria-label="Product's name"
-                    aria-describedby="basic-addon2" id="IDProductNameInput" onfocus="this.value=''">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="IDAddNewProduct">Add</button>
+            <div class="col-md-6">
+                <h3>Add new product</h3>
+
+                <div class="input-group mb-3 input-group-lg">
+                    <input type="text" class="form-control" placeholder="Product's name" aria-label="Product's name"
+                        aria-describedby="basic-addon2" id="IDProductNameInput" onfocus="this.value=''">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" id="IDAddNewProduct">Add</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,11 +50,6 @@
                     </tr>
                 </thead>
                 <tbody id="IDTableBody">
-                    <tr>
-                        <td>Sample 1</td>
-                        <td><button id="IDFirstEditButton" class="btn btn-primary" data-toggle="modal" data-target="#IDeditProduct">Edit</button></td>
-                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#IDdeleteConfirmation">Delete</button></td>
-                    </tr>
                 </tbody>
 
             </table>
@@ -63,29 +61,6 @@
             <div class="modal-dialog">
                 <div class="alert alert-success" id="IDNotificationContent">
                     <strong>Success!</strong> Indicates a successful or positive action.
-                </div>
-            </div>
-        </div>
-
-        <!--Delete confirmation box-->
-        <div class=row>
-            <div class="modal" id="IDdeleteConfirmation" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Delete a product</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure to delete this product?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="IDDeleteAProduct">Yes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -102,11 +77,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <label for="IDproductName">Name of Product</label>
-                            <input id="IDproductName" type="text" id="IDInputToEditName">
+                            <label for="IDproductNametoEdit">Name of Product</label>
+                            <input id="IDproductNametoEdit" type="text" onfocus="this.value=''">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="IDEditProductNameButton">Edit</button>
+                            <button type="button" class="btn btn-primary" id="IDEditProductNameButton" data-dismiss="modal">Edit</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
@@ -114,12 +89,41 @@
             </div>
         </div>
         <!--End div-->
+
+        <!--Delete confirmation box-->
+        <div class=row>
+            <div class="modal" id="IDdeleteConfirmation" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete a product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure to delete this product?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="IDDeleteAProduct" data-dismiss="modal">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of delete confirmation -->
     </div>
-<script src="productList.js"></script>
-<script src="displayManager.js"></script>
-<script>
-let displayManager = new DisplayManager("IDAddNewProduct", "IDProductNameInput","IDFirstEditButton", "IDEditProductNameButton", "IDInputToEditName", "IDDeleteAProduct", "IDTableBody","IDNotification","IDNotificationContent")
-</script>
+    <script src="productList.js"></script>
+    <script src="displayManager.js"></script>
+    <script>
+        let displayManager = new DisplayManager("IDAddNewProduct", "IDProductNameInput", "IDEditProductNameButton",
+            "IDproductNametoEdit", "IDDeleteAProduct", "IDTableBody", "IDNotification", "IDNotificationContent");
+
+        function pickID(id) {
+            displayManager.elementID = id;
+        }
+    </script>
 </body>
 
 </html>
