@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Regex Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+    let regex = /^[0](96|97|98|162|163|164|165|166|167)[0-9]{7}$/;
+    let arr= ['0987654321','0978995432','01652021028','016322227778','086655789333'];
+    let result;
+    let n = arr.length;
+    for (let i=0; i<n; i++) {
+        result = regex.test(arr[i]);
+        console.log("Kiểm tra "+arr[i]+" : "+result);
+    }
+    </script>
+</body>
+</html>
