@@ -8,7 +8,7 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
         this.topAcc = topAcc;
 
         this.draw = function () {
-            ctx = canvas.getContext("2d");
+            let ctx = canvas.getContext("2d");
             ctx.beginPath();
             ctx.arc(self.left, self.top, self.radius, 0, Math.PI * 2);
             ctx.fillStyle = self.color;

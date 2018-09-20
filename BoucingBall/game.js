@@ -1,11 +1,14 @@
 let canvas = document.getElementById("myCanvas");
+let imgId = "BattleShip";
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 //Main program
 let objectList = [];
 createBalls(objectList,18);
+createShip(150,150,64,imgId);
 animate(objectList);
 
+//Tạo số lượng bóng random
 function createBalls(objectList, numberOfBalls) {
     let ColorList = ["red","blue","green","orange","yellow","brown","pink","tan"];
     let leftAcc =0;
@@ -14,17 +17,25 @@ function createBalls(objectList, numberOfBalls) {
     for (let i = 0; i < numberOfBalls; i++) {
         do {
         radius = getRandom(10,30);
-        left = getRandom(0+radius,WIDTH-radius);
+        left = getRandom(0+radius, WIDTH-radius);
         top = getRandom(0+radius, HEIGHT-radius);
         color = ColorList[getRandom(0,7)];
         leftAcc = getRandom(-4,4);
         topAcc = getRandom(-4,4);
-        } while ((leftAcc==0)&(topAcc==0));
+        } while ( ((leftAcc==0)&(topAcc==0)) || (ifCollideAnyObject(left,top,radius,objectList)) );
 
         let ball = new Ball(left, top, radius, color, leftAcc, topAcc);
         objectList.push(ball);
     }
 }
+
+//Tạo tàu chiến
+function createShip(left, top, size, imgId) {
+    let ship = new Ship(left, top, size, imgId);
+    ship.draw();
+    objectList.push(ship);
+}
+
 //Lấy ngẫu nhiên
 function getRandom(low,high) {
     let result = Math.floor(Math.random()*(high-low)+low);
@@ -55,7 +66,8 @@ function checkCollision(objA, objB) {
     }
     return false;
 }
-function ifCollideAnyObject(objA, objectList) {
+function ifCollideAnyObject(left,top,radius, objectList) {
+    let objA = new Ball(left,top,radius,"black",2,2);
     for (let objB in objectList) {
         if (checkCollision(objA, objB)==true) {
             return true;
