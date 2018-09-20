@@ -1,5 +1,8 @@
 let canvas = document.getElementById("myCanvas");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 let imgId = "BattleShip";
+let BallNumber = 18;
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 const SHIPTOP = 600;
@@ -7,8 +10,9 @@ const SHIPLEFT = 280;
 const SHIPSIZE = 64;
 //Main program
 let objectList = [];
-createBalls(objectList,18);
+createBalls(objectList,BallNumber);
 createShip(SHIPTOP,SHIPLEFT,SHIPSIZE,imgId);
+objectList[BallNumber].moveOnKeyDown();
 animate(objectList);
 
 //Tạo số lượng bóng random
@@ -35,7 +39,7 @@ function createBalls(objectList, numberOfBalls) {
 //Tạo tàu chiến
 function createShip(left, top, size, imgId) {
     let ship = new Ship(left, top, size, imgId);
-    ship.draw();
+    //ship.moveOnKeyDown();
     objectList.push(ship);
 }
 
