@@ -1,4 +1,6 @@
 let canvas = document.getElementById("myCanvas");
+const WIDTH = canvas.width;
+const HEIGHT = canvas.height;
 //Main program
 let objectList = [];
 createBalls(objectList,18);
@@ -23,16 +25,17 @@ function createBalls(objectList, numberOfBalls) {
         objectList.push(ball);
     }
 }
-
+//Lấy ngẫu nhiên
 function getRandom(low,high) {
     let result = Math.floor(Math.random()*(high-low)+low);
     return result;
 }
+//Chuyển động
 function animate(objectList) {
     let timeFrame = 20;
     setInterval(function() {render(objectList)},timeFrame);
 }
-
+//Vẽ hình
 function render(objectList) {
     let ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -42,6 +45,7 @@ function render(objectList) {
     }
 }
 
+//Kiểm tra va chạm
 function checkCollision(objA, objB) {
     if ((objA.top!=objB.top)&&(objA.left!=objB.left)) {
         distance = Math.pow(objA.top-objB.top,2)+Math.pow(objA.left-objB.left,2)
@@ -50,4 +54,12 @@ function checkCollision(objA, objB) {
         }
     }
     return false;
+}
+function ifCollideAnyObject(objA, objectList) {
+    for (let objB in objectList) {
+        if (checkCollision(objA, objB)==true) {
+            return true;
+        }
+    }
+    return false;   
 }
