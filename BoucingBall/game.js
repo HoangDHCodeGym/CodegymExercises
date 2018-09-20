@@ -3,6 +3,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let imgId = "BattleShip";
 let BallNumber = 18;
+let Game = "continue";
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 const SHIPTOP = 600;
@@ -10,6 +11,7 @@ const SHIPLEFT = 280;
 const SHIPSIZE = 64;
 //Main program
 let objectList = [];
+let interval;
 createBalls(objectList,BallNumber);
 createShip(SHIPTOP,SHIPLEFT,SHIPSIZE,imgId);
 objectList[BallNumber].moveOnKeyDown();
@@ -48,11 +50,13 @@ function getRandom(low,high) {
     let result = Math.floor(Math.random()*(high-low)+low);
     return result;
 }
+
 //Chuyển động
 function animate(objectList) {
     let timeFrame = 20;
-    setInterval(function() {render(objectList)},timeFrame);
+    interval = setInterval(function() {render(objectList)},timeFrame);
 }
+
 //Vẽ hình
 function render(objectList) {
     let ctx = canvas.getContext("2d");
@@ -80,5 +84,17 @@ function ifCollideAnyObject(left,top,radius, objectList) {
             return true;
         }
     }
-    return false;   
+    return false;
 }
+
+
+//Game over
+function gameOver() {
+    clearInterval(interval);
+    let ctx = canvas.getContext("2d");
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("You're death",WIDTH/2-160,HEIGHT/2);
+    ctx.fillText("Press space to restart", WIDTH/2-160, HEIGHT/2+40);
+}
+
