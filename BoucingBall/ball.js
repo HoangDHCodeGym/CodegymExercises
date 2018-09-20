@@ -57,16 +57,25 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                         element.move();
                     }
                 } else if (element.type == "ship") {
-                    gameOver();
+                    element.life -= 1;
+                    element.score += 1;
+                    this.removeSelf();
+                    if (element.life == 0) {
+                        gameOver();
+                    }
                 } else if (element.type == "bullet") {
                     self.removeSelf();
                     element.removeSelf();
+                    battleShip.score +=1;
+                    if (battleShip.score == BallNumber) {
+                        wonTheGame();
+                    }
                 }
             }
         }
     }
-    this.removeSelf = function() {
+    this.removeSelf = function () {
         let i = objectList.indexOf(this);
-        objectList.splice(i,1);
+        objectList.splice(i, 1);
     }
 }

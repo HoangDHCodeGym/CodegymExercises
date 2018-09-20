@@ -9,7 +9,7 @@ class Bullet extends Ball {
             }
             //Biến mất khi chạm cạnh phải
             if (this.left > (WIDTH - this.radius)) {
-                this.removeSelft();
+                this.removeSelf();
             }
             //Biến mất khi chạm cạnh dưới
             if (this.top > (HEIGHT - this.radius)) {

@@ -2,18 +2,19 @@ let canvas = document.getElementById("myCanvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let imgId = "BattleShip";
-let BallNumber = 18;
+let BallNumber = 23;
 let Game = "continue";
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
-const SHIPTOP = 600;
-const SHIPLEFT = 280;
+const SHIPTOP = 70;
+const SHIPLEFT = 70;
 const SHIPSIZE = 64;
 //Main program
 let objectList = [];
 let interval;
 createBalls(objectList,BallNumber);
-createShip(SHIPTOP,SHIPLEFT,SHIPSIZE,imgId);
+//pickEmptySpace();
+let battleShip = createShip(SHIPTOP,SHIPLEFT,SHIPSIZE,imgId);
 objectList[BallNumber].moveOnKeyDown();
 animate(objectList);
 
@@ -26,13 +27,12 @@ function createBalls(objectList, numberOfBalls) {
     for (let i = 0; i < numberOfBalls; i++) {
         do {
         radius = getRandom(10,30);
-        left = getRandom(0+radius, WIDTH-radius);
-        top = getRandom(0+radius, HEIGHT-radius);
+        left = getRandom(WIDTH/5+radius, WIDTH-radius);
+        top = getRandom(HEIGHT/5+radius, HEIGHT-radius);
         color = ColorList[getRandom(0,7)];
         leftAcc = getRandom(-4,4);
         topAcc = getRandom(-4,4);
         } while ( ((leftAcc==0)&(topAcc==0)) || (ifCollideAnyObject(left,top,radius,objectList)) );
-
         let ball = new Ball(left, top, radius, color, leftAcc, topAcc);
         objectList.push(ball);
     }
@@ -41,8 +41,8 @@ function createBalls(objectList, numberOfBalls) {
 //Tạo tàu chiến
 function createShip(left, top, size, imgId) {
     let ship = new Ship(left, top, size, imgId);
-    //ship.moveOnKeyDown();
     objectList.push(ship);
+    return objectList[objectList.length-1];
 }
 
 //Lấy ngẫu nhiên
@@ -65,6 +65,7 @@ function render(objectList) {
         element.randomMove();
         element.draw();
     }
+    displayScoreAndLife();
 }
 
 //Kiểm tra va chạm
@@ -95,15 +96,52 @@ function ifCollideAnyObject(left,top,radius, objectList) {
     }
     return false;
 }
-
+//Chọn chỗ trống để đặt tàu
+/*function pickEmptySpace() {
+    let radius = 60;
+    let left,top;
+    do {
+    left = getRandom(0+radius, WIDTH-radius);
+    top = getRandom(0+radius, HEIGHT-radius);
+    } while (ifCollideAnyObject(left,top,radius,objectList)==true);
+    SHIPTOP = top;
+    SHIPLEFT = left;
+} */
 
 //Game over
 function gameOver() {
-    //clearInterval(interval);
+    clearInterval(interval);
     let ctx = canvas.getContext("2d");
-    ctx.font = "50px Arial";
+    ctx.font = "50px Orbitron";
     ctx.fillStyle = "white";
-    ctx.fillText("You're death",WIDTH/2-160,HEIGHT/2);
+    ctx.fillText("GAME OVER",WIDTH/2-160,HEIGHT/2);
     ctx.fillText("Press space to restart", WIDTH/2-160, HEIGHT/2+40);
+    $(document).keydown(function(event) {
+        if (event.which == 32) {
+            location.reload();
+        }
+    })
+}
+//Won the game
+function wonTheGame() {
+    clearInterval(interval);
+    let ctx = canvas.getContext("2d");
+    ctx.font = "50px Orbitron";
+    ctx.fillStyle = "white";
+    ctx.fillText("CONGRATULATION! YOU WON!",WIDTH/2-160,HEIGHT/2);
+    ctx.fillText("Press space to restart", WIDTH/2-160, HEIGHT/2+40);
+    $(document).keydown(function(event) {
+        if (event.which == 32) {
+            location.reload();
+        }
+    })
 }
 
+//Tính điểm
+function displayScoreAndLife() {
+    let ctx = canvas.getContext("2d");
+    ctx.font = "20px Orbitron";
+    ctx.fillStyle = "yellow";
+    ctx.fillText("Life: "+"♥".repeat(battleShip.life),30,30);
+    ctx.fillText("Score: "+battleShip.score, 30,50);
+}

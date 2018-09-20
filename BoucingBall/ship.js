@@ -1,4 +1,6 @@
 let Ship = function (left, top, size, imgId) {
+    this.life = 3;
+    this.score = 0;
     this.left = left;
     this.top = top;
     this.topCenter = top + size/2;
@@ -11,7 +13,7 @@ let Ship = function (left, top, size, imgId) {
     this.radius = 20;
     this.img = document.getElementById(imgId);
     let self = this;
-    let radian = 0;
+    this.radian = 0;
     let base = Math.sqrt(2*Math.pow(this.size/2,2));
 
     this.draw = function () {
@@ -21,9 +23,9 @@ let Ship = function (left, top, size, imgId) {
         //Start Rotation
         ctx.save();
         ctx.translate(self.left + self.size / 2, self.top + self.size / 2); //go to center of object
-        radian = Math.PI*this.degree;
+        this.radian = Math.PI*this.degree;
         //Rotate
-        ctx.rotate(radian);
+        ctx.rotate(this.radian);
         //Increase degree
         if (this.degree == 2) {
             this.degree = 0;
@@ -62,9 +64,16 @@ let Ship = function (left, top, size, imgId) {
     }
     this.randomMove = function () {}
     this.fire = function() {
-        let bullet = new Bullet(self.left,self.top,5,"red",0,-6);
+        bulletSpeed = 8;
+        oriLeft = bulletSpeed*Math.sin(this.radian);
+        oriTop = -bulletSpeed*Math.cos(this.radian);
+        createBullet(oriLeft, oriTop);
+        createBullet(-oriLeft, -oriTop);
+        function createBullet(left,top) {
+        let bullet = new Bullet(self.leftCenter,self.topCenter,5,"red",left,top);
         bullet.type = "bullet";
         objectList.push(bullet);
+        }
     }
     this.moveOnKeyDown = function () {
         $(document).keydown(function (event) {
