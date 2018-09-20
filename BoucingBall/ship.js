@@ -62,7 +62,7 @@ let Ship = function (left, top, size, imgId) {
     }
     this.randomMove = function () {}
     this.fire = function() {
-        let bullet = new Bullet(self.left,self.top,5,"red",0,-2);
+        let bullet = new Bullet(self.left,self.top,5,"red",0,-6);
         bullet.type = "bullet";
         objectList.push(bullet);
     }

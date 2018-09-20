@@ -7,6 +7,7 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
     this.leftAcc = leftAcc;
     this.topAcc = topAcc;
     this.type = "ball";
+    this.pos = 0;
 
     this.draw = function () {
         let ctx = canvas.getContext("2d");
@@ -57,8 +58,15 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                     }
                 } else if (element.type == "ship") {
                     gameOver();
-                } 
+                } else if (element.type == "bullet") {
+                    self.removeSelf();
+                    element.removeSelf();
+                }
             }
         }
+    }
+    this.removeSelf = function() {
+        let i = objectList.indexOf(this);
+        objectList.splice(i,1);
     }
 }
