@@ -8,18 +8,12 @@ let Ship = function (left, top, size, imgId) {
     this.topAcc = 1;
     this.type = "ship";
     this.degree = 0;
-    this.radius = 30;
+    this.radius = 20;
     this.img = document.getElementById(imgId);
     let self = this;
     let radian = 0;
     let base = Math.sqrt(2*Math.pow(this.size/2,2));
-    /*
-    function updateCenter() {
-        let angle = radian+Math.PI/4;
-        self.topCenter = self.top + Math.floor(base*Math.sin(angle));
-        self.leftCenter = self.left + Math.floor(base*Math.cos(angle));
-    }
-    */
+
     this.draw = function () {
         self.reOrientation();
         self.move();
@@ -28,8 +22,6 @@ let Ship = function (left, top, size, imgId) {
         ctx.save();
         ctx.translate(self.left + self.size / 2, self.top + self.size / 2); //go to center of object
         radian = Math.PI*this.degree;
-        //Update center ordinates of object
-        //updateCenter();
         //Rotate
         ctx.rotate(radian);
         //Increase degree
@@ -70,7 +62,9 @@ let Ship = function (left, top, size, imgId) {
     }
     this.randomMove = function () {}
     this.fire = function() {
-
+        let bullet = new Bullet(self.left,self.top,5,"red",0,-2);
+        bullet.type = "bullet";
+        objectList.push(bullet);
     }
     this.moveOnKeyDown = function () {
         $(document).keydown(function (event) {
