@@ -16,6 +16,9 @@ let Ball = function(left, top, radius, color, leftAcc, topAcc) {
     }
     this.randomMove = function() {
         this.reOrientation();
+        this.move();
+    }
+    this.move = function() {
         this.top += this.topAcc;
         this.left += this.leftAcc;
     }
@@ -41,21 +44,16 @@ let Ball = function(left, top, radius, color, leftAcc, topAcc) {
         for (element of objectList) {
             if ((this.top!=element.top)&&(this.left!=element.left)) {
                 distance = Math.pow(this.top-element.top,2)+Math.pow(this.left-element.left,2)
-                if ( (distance<Math.pow(element.radius+this.radius,2)) && (reverseOrientation(this,element)) ) {
+                if (distance<Math.pow(element.radius+this.radius,2)) {
                     l = this.leftAcc;
                     t = this.topAcc;
                     this.leftAcc = element.leftAcc;
                     this.topAcc = element.topAcc;
                     element.topAcc = t;
                     element.leftAcc = l;
+                    this.move();
                 }
             }
-        }
-        function reverseOrientation(objA,objB) {
-            if ((objA.topAcc*objB.topAcc<0)||(objA.leftAcc*objB.leftAcc<0)) {
-                return true;
-            }
-            return false;
         }
     }
 }

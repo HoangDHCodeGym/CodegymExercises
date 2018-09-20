@@ -1,7 +1,7 @@
 let canvas = document.getElementById("myCanvas");
 //Main program
 let objectList = [];
-createBalls(objectList,15);
+createBalls(objectList,18);
 animate(objectList);
 
 function createBalls(objectList, numberOfBalls) {
@@ -11,7 +11,7 @@ function createBalls(objectList, numberOfBalls) {
     let left,top,radius,color;
     for (let i = 0; i < numberOfBalls; i++) {
         do {
-        radius = getRandom(10,50);
+        radius = getRandom(10,30);
         left = getRandom(0+radius,canvas.width-radius);
         top = getRandom(0+radius, canvas.height-radius);
         color = ColorList[getRandom(0,7)];
