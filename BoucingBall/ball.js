@@ -42,9 +42,7 @@ let Ball = function(left, top, radius, color, leftAcc, topAcc) {
         //Đổi hướng khi chạm vật thể khác
         let distance,l,t;
         for (element of objectList) {
-            if ((this.top!=element.top)&&(this.left!=element.left)) {
-                distance = Math.pow(this.top-element.top,2)+Math.pow(this.left-element.left,2)
-                if (distance<Math.pow(element.radius+this.radius,2)) {
+            if (checkCollision(element,this)==true) {
                     l = this.leftAcc;
                     t = this.topAcc;
                     this.leftAcc = element.leftAcc;

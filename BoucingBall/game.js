@@ -41,3 +41,13 @@ function render(objectList) {
         element.draw();
     }
 }
+
+function checkCollision(objA, objB) {
+    if ((objA.top!=objB.top)&&(objA.left!=objB.left)) {
+        distance = Math.pow(objA.top-objB.top,2)+Math.pow(objA.left-objB.left,2)
+        if (distance<Math.pow(objA.radius+objB.radius,2)) {
+            return true;
+        }
+    }
+    return false;
+}
