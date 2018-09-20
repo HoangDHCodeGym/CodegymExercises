@@ -14,8 +14,8 @@ function createBalls(objectList, numberOfBalls) {
     for (let i = 0; i < numberOfBalls; i++) {
         do {
         radius = getRandom(10,30);
-        left = getRandom(0+radius,canvas.width-radius);
-        top = getRandom(0+radius, canvas.height-radius);
+        left = getRandom(0+radius,WIDTH-radius);
+        top = getRandom(0+radius, HEIGHT-radius);
         color = ColorList[getRandom(0,7)];
         leftAcc = getRandom(-4,4);
         topAcc = getRandom(-4,4);
@@ -38,7 +38,7 @@ function animate(objectList) {
 //Vẽ hình
 function render(objectList) {
     let ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
     for (let element of objectList) {
         element.randomMove();
         element.draw();

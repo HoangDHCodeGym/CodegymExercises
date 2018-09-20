@@ -28,11 +28,11 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                 this.topAcc = (-1) * this.topAcc;
             }
             //Đổi hướng khi chạm cạnh phải
-            if ((this.left > (canvas.width - this.radius)) && (this.leftAcc > 0)) {
+            if ((this.left > (WIDTH - this.radius)) && (this.leftAcc > 0)) {
                 this.leftAcc = (-1) * this.leftAcc;
             }
             //Đổi hướng khi chạm cạnh dưới
-            if ((this.top > canvas.height - this.radius) && (this.topAcc > 0)) {
+            if ((this.top > HEIGHT - this.radius) && (this.topAcc > 0)) {
                 this.topAcc = (-1) * this.topAcc;
             }
             //Đổi hướng khi chạm cạnh trái
