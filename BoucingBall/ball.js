@@ -6,6 +6,7 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
         let self = this;
         this.leftAcc = leftAcc;
         this.topAcc = topAcc;
+        this.type = "ball";
 
         this.draw = function () {
             let ctx = canvas.getContext("2d");
@@ -49,7 +50,10 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                     this.topAcc = element.topAcc;
                     element.topAcc = t;
                     element.leftAcc = l;
-                    this.move();
+                    while (checkCollision(element, this)) {
+                     this.move();
+                     element.move();
+                    }
                 }
             }
         }
