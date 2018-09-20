@@ -1,6 +1,8 @@
 let Ship = function (left, top, size, imgId) {
     this.left = left;
     this.top = top;
+    this.topCenter = top + size/2;
+    this.leftCenter = left + size/2;
     this.size = size;
     this.leftAcc = 1;
     this.topAcc = 1;
@@ -9,6 +11,15 @@ let Ship = function (left, top, size, imgId) {
     this.radius = 30;
     this.img = document.getElementById(imgId);
     let self = this;
+    let radian = 0;
+    let base = Math.sqrt(2*Math.pow(this.size/2,2));
+    /*
+    function updateCenter() {
+        let angle = radian+Math.PI/4;
+        self.topCenter = self.top + Math.floor(base*Math.sin(angle));
+        self.leftCenter = self.left + Math.floor(base*Math.cos(angle));
+    }
+    */
     this.draw = function () {
         self.reOrientation();
         self.move();
@@ -16,11 +27,16 @@ let Ship = function (left, top, size, imgId) {
         //Start Rotation
         ctx.save();
         ctx.translate(self.left + self.size / 2, self.top + self.size / 2); //go to center of object
-        ctx.rotate(Math.PI * this.degree);
+        radian = Math.PI*this.degree;
+        //Update center ordinates of object
+        //updateCenter();
+        //Rotate
+        ctx.rotate(radian);
+        //Increase degree
         if (this.degree == 2) {
-            this.degree = 0
+            this.degree = 0;
         } else {
-            this.degree += 0.02
+            this.degree += 0.02;
         };
         ctx.translate(-self.size / 2, -self.size / 2); //go to orginal top and center of object
         ctx.drawImage(self.img, 0, 0, self.size, self.size);
@@ -31,6 +47,8 @@ let Ship = function (left, top, size, imgId) {
     this.move = function () {
         this.top += this.topAcc;
         this.left += this.leftAcc;
+        this.topCenter = this.top + this.size/2;
+        this.leftCenter = this.left+ this.size/2;
     }
     this.reOrientation = function () {
         //Đổi hướng khi chạm cạnh trên
@@ -51,6 +69,9 @@ let Ship = function (left, top, size, imgId) {
         }
     }
     this.randomMove = function () {}
+    this.fire = function() {
+
+    }
     this.moveOnKeyDown = function () {
         $(document).keydown(function (event) {
             let step = 2;

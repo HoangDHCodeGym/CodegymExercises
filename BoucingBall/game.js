@@ -69,9 +69,18 @@ function render(objectList) {
 
 //Kiểm tra va chạm
 function checkCollision(objA, objB) {
-    if ((objA.top!=objB.top)&&(objA.left!=objB.left)) {
-        distance = Math.pow(objA.top-objB.top,2)+Math.pow(objA.left-objB.left,2)
-        if (distance<Math.pow(objA.radius+objB.radius,2)) {
+    let Atop, Aleft, distance, centerDistance;
+    if (objA.type != "ship") {
+        Atop = objA.top;
+        Aleft = objA.left;
+    } else {
+        Atop = objA.topCenter;
+        Aleft = objA.leftCenter;
+    }
+    if ((Atop!=objB.top)&&(Aleft!=objB.left)) {
+        distance = Math.pow(Atop-objB.top,2)+Math.pow(Aleft-objB.left,2);
+        centerDistance = Math.pow(objA.radius+objB.radius,2);
+        if (distance < centerDistance) {
             return true;
         }
     }
@@ -90,7 +99,7 @@ function ifCollideAnyObject(left,top,radius, objectList) {
 
 //Game over
 function gameOver() {
-    clearInterval(interval);
+    //clearInterval(interval);
     let ctx = canvas.getContext("2d");
     ctx.font = "50px Arial";
     ctx.fillStyle = "white";

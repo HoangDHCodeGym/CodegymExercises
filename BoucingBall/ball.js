@@ -56,7 +56,7 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                         element.move();
                     }
                 } else if (element.type == "ship") {
-
+                    gameOver();
                 } 
             }
         }
