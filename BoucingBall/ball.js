@@ -67,7 +67,7 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                     self.removeSelf();
                     element.removeSelf();
                     battleShip.score +=1;
-                    if (battleShip.score == BallNumber) {
+                    if (battleShip.score == (BallNumber-2)) {
                         wonTheGame();
                     }
                 }
