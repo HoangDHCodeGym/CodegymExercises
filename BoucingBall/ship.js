@@ -3,8 +3,8 @@ let Ship = function (left, top, size, imgId) {
     this.score = 0;
     this.left = left;
     this.top = top;
-    this.topCenter = top + size/2;
-    this.leftCenter = left + size/2;
+    this.topCenter = top + size / 2;
+    this.leftCenter = left + size / 2;
     this.size = size;
     this.leftAcc = 1;
     this.topAcc = 1;
@@ -14,7 +14,8 @@ let Ship = function (left, top, size, imgId) {
     this.img = document.getElementById(imgId);
     let self = this;
     this.radian = 0;
-    let base = Math.sqrt(2*Math.pow(this.size/2,2));
+    this.lastFireTime = 0;
+    let base = Math.sqrt(2 * Math.pow(this.size / 2, 2));
 
     this.draw = function () {
         self.reOrientation();
@@ -23,7 +24,7 @@ let Ship = function (left, top, size, imgId) {
         //Start Rotation
         ctx.save();
         ctx.translate(self.left + self.size / 2, self.top + self.size / 2); //go to center of object
-        this.radian = Math.PI*this.degree;
+        this.radian = Math.PI * this.degree;
         //Rotate
         ctx.rotate(this.radian);
         //Increase degree
@@ -41,8 +42,8 @@ let Ship = function (left, top, size, imgId) {
     this.move = function () {
         this.top += this.topAcc;
         this.left += this.leftAcc;
-        this.topCenter = this.top + this.size/2;
-        this.leftCenter = this.left+ this.size/2;
+        this.topCenter = this.top + this.size / 2;
+        this.leftCenter = this.left + this.size / 2;
     }
     this.reOrientation = function () {
         //Đổi hướng khi chạm cạnh trên
@@ -63,31 +64,43 @@ let Ship = function (left, top, size, imgId) {
         }
     }
     this.randomMove = function () {}
-    this.fire = function() {
-        bulletSpeed = 8;
-        oriLeft = bulletSpeed*Math.sin(this.radian);
-        oriTop = -bulletSpeed*Math.cos(this.radian);
-        createBullet(oriLeft, oriTop);
-        createBullet(-oriLeft, -oriTop);
-        function createBullet(left,top) {
-        let bullet = new Bullet(self.leftCenter,self.topCenter,5,"red",left,top);
-        bullet.type = "bullet";
-        objectList.push(bullet);
+    this.fire = function () {
+        if (recharge()) {
+            this.lastFireTime = Time;
+            bulletSpeed = 8;
+            oriLeft = bulletSpeed * Math.sin(this.radian);
+            oriTop = -bulletSpeed * Math.cos(this.radian);
+            createBullet(oriLeft, oriTop);
+            createBullet(-oriLeft, -oriTop);
         }
+
+        function createBullet(left, top) {
+            let bullet = new Bullet(self.leftCenter, self.topCenter, 5, "red", left, top);
+            bullet.type = "bullet";
+            objectList.push(bullet);
+        }
+
+        function recharge() {
+            if ((Time - self.lastFireTime) > 0.5) {
+                return true;
+            }
+            return false;
+        }
+
     }
     this.moveOnKeyDown = function () {
         $(document).keydown(function (event) {
             let step = 2;
-            if ( (event.which == 40) && (self.topAcc < 10) ) { //Down
+            if ((event.which == 40) && (self.topAcc < 10)) { //Down
                 self.topAcc += step;
             }
-            if ( (event.which == 38) && (self.topAcc > -10) ) { //Up
+            if ((event.which == 38) && (self.topAcc > -10)) { //Up
                 self.topAcc -= step;
             }
-            if ( (event.which == 37) && (self.leftAcc > -10) ) { //Left
+            if ((event.which == 37) && (self.leftAcc > -10)) { //Left
                 self.leftAcc -= step;
             }
-            if ( (event.which == 39) && (self.leftAcc < 10) ) { //Right
+            if ((event.which == 39) && (self.leftAcc < 10)) { //Right
                 self.leftAcc += step;
             }
             if (event.which == 32) { //fire

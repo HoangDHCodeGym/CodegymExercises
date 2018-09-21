@@ -4,6 +4,8 @@ canvas.height = window.innerHeight;
 let imgId = "BattleShip";
 let BallNumber = 23;
 let Game = "continue";
+let Time = 0;
+let timeFrame;
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 const SHIPTOP = 70;
@@ -53,7 +55,7 @@ function getRandom(low,high) {
 
 //Chuyển động
 function animate(objectList) {
-    let timeFrame = 20;
+    timeFrame = 20;
     interval = setInterval(function() {render(objectList)},timeFrame);
 }
 
@@ -66,6 +68,7 @@ function render(objectList) {
         element.draw();
     }
     displayScoreAndLife();
+    Time += timeFrame/1000;
 }
 
 //Kiểm tra va chạm
