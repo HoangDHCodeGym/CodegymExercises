@@ -15,7 +15,7 @@ let interval;
 createBalls(objectList,BallNumber);
 //pickEmptySpace();
 let battleShip = createShip(SHIPTOP,SHIPLEFT,SHIPSIZE,imgId);
-objectList[BallNumber].moveOnKeyDown();
+battleShip.moveOnKeyDown();
 animate(objectList);
 
 //Tạo số lượng bóng random

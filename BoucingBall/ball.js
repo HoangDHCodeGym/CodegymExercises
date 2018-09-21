@@ -14,6 +14,10 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
         ctx.beginPath();
         ctx.arc(self.left, self.top, self.radius, 0, Math.PI * 2);
         ctx.fillStyle = self.color;
+        ctx.shadowColor = "#fff";
+        ctx.shadowBlur = 20;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
         ctx.fill();
     }
     this.randomMove = function () {
@@ -66,8 +70,8 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                 } else if (element.type == "bullet") {
                     self.removeSelf();
                     element.removeSelf();
-                    battleShip.score +=1;
-                    if (battleShip.score == (BallNumber-2)) {
+                    battleShip.score += 1;
+                    if (battleShip.score >= (BallNumber)) {
                         wonTheGame();
                     }
                 }
