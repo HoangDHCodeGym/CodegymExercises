@@ -7,7 +7,6 @@ let Explosion = function(left, top, size) {
     self = this;
     this.randomMove = function() {}
     this.draw = function() {
-        console.log("Hello");
         let ctx = canvas.getContext("2d");
         ctx.drawImage(self.img, self.left, self.top, self.size*2, self.size*2);
         if (Time-this.lifeTime > 0.3) {

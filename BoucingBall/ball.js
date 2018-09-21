@@ -67,12 +67,12 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                     //Tạo vụ nổ
                     let explosion = new Explosion(self.left-self.radius, self.top-self.radius, self.radius*2);
                     objectList.push(explosion);
-                    //let alert = new Alert(50,50,WIDTH-50,HEIGHT-50);
-                    //objectList.push(alert);
                     //Game over
                     if (element.life == 0) {
                         gameOver();
                     }
+                    if (battleShip.score >= (BallNumber-1)) {
+                        wonTheGame(); }
                 } else if (element.type == "bullet") {
                     self.removeSelf();
                     element.removeSelf();
