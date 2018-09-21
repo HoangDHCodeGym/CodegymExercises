@@ -118,9 +118,9 @@ function gameOver() {
     ctx.font = "50px Orbitron";
     ctx.fillStyle = "white";
     ctx.fillText("GAME OVER",WIDTH/2-160,HEIGHT/2);
-    ctx.fillText("Press space to restart", WIDTH/2-160, HEIGHT/2+40);
+    ctx.fillText("Press ENTER to restart", WIDTH/2-160, HEIGHT/2+40);
     $(document).keydown(function(event) {
-        if (event.which == 32) {
+        if (event.which == 13) {
             location.reload();
         }
     })
@@ -132,9 +132,9 @@ function wonTheGame() {
     ctx.font = "50px Orbitron";
     ctx.fillStyle = "white";
     ctx.fillText("CONGRATULATION! YOU WON!",WIDTH/2-160,HEIGHT/2);
-    ctx.fillText("Press space to restart", WIDTH/2-160, HEIGHT/2+40);
+    ctx.fillText("Press ENTER to restart", WIDTH/2-160, HEIGHT/2+40);
     $(document).keydown(function(event) {
-        if (event.which == 32) {
+        if (event.which == 13) {
             location.reload();
         }
     })

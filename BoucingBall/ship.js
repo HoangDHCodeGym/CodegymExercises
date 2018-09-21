@@ -72,6 +72,8 @@ let Ship = function (left, top, size, imgId) {
             oriTop = -bulletSpeed * Math.cos(this.radian);
             createBullet(oriLeft, oriTop);
             createBullet(-oriLeft, -oriTop);
+            //createBullet(-oriLeft, oriTop);
+            //createBullet(oriLeft, -oriTop);
         }
 
         function createBullet(left, top) {

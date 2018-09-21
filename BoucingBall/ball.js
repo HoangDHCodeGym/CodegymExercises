@@ -14,7 +14,7 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
         ctx.beginPath();
         ctx.arc(self.left, self.top, self.radius, 0, Math.PI * 2);
         ctx.fillStyle = self.color;
-        ctx.shadowColor = "#fff";
+        ctx.shadowColor = self.color;
         ctx.shadowBlur = 20;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
@@ -64,14 +64,24 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc) {
                     element.life -= 1;
                     element.score += 1;
                     this.removeSelf();
+                    //Tạo vụ nổ
+                    let explosion = new Explosion(self.left-self.radius, self.top-self.radius, self.radius*2);
+                    objectList.push(explosion);
+                    //let alert = new Alert(50,50,WIDTH-50,HEIGHT-50);
+                    //objectList.push(alert);
+                    //Game over
                     if (element.life == 0) {
                         gameOver();
                     }
                 } else if (element.type == "bullet") {
                     self.removeSelf();
                     element.removeSelf();
+                    //Tạo vụ nổ
+                    let explosion = new Explosion(self.left-self.radius, self.top-self.radius, self.radius*2);
+                    objectList.push(explosion);
+                    //Tihs điểm
                     battleShip.score += 1;
-                    if (battleShip.score >= (BallNumber)) {
+                    if (battleShip.score >= (BallNumber-1)) {
                         wonTheGame();
                     }
                 }
