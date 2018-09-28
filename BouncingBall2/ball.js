@@ -48,47 +48,6 @@ let Ball = function (left, top, radius, color, leftAcc, topAcc, imgObj) {
             this.leftAcc = (-1) * this.leftAcc;
         }
         //Đổi hướng khi chạm bóng khác
-        let distance, l, t;
-        for (element of objectList) {
-            if (checkCollision(element, this) == true) {
-                if (element.type == "ball") {
-                    l = this.leftAcc;
-                    t = this.topAcc;
-                    this.leftAcc = element.leftAcc;
-                    this.topAcc = element.topAcc;
-                    element.topAcc = t;
-                    element.leftAcc = l;
-                    while (checkCollision(element, this)) {
-                        this.move();
-                        element.move();
-                    }
-                } else if (element.type == "ship") {
-                    element.life -= 1;
-                    element.score += 1;
-                    this.removeSelf();
-                    //Tạo vụ nổ
-                    let explosion = new Explosion(self.left-self.radius, self.top-self.radius, self.radius*2);
-                    objectList.push(explosion);
-                    //Game over
-                    if (element.life == 0) {
-                        gameOver();
-                    }
-                    if (battleShip.score >= (BallNumber-1)) {
-                        wonTheGame(); }
-                } else if (element.type == "bullet") {
-                    self.removeSelf();
-                    element.removeSelf();
-                    //Tạo vụ nổ
-                    let explosion = new Explosion(self.left-self.radius, self.top-self.radius, self.radius*2);
-                    objectList.push(explosion);
-                    //Tihs điểm
-                    battleShip.score += 1;
-                    if (battleShip.score >= (BallNumber-1)) {
-                        wonTheGame();
-                    }
-                }
-            }
-        }
     }
     this.removeSelf = function () {
         let i = objectList.indexOf(this);

@@ -6,6 +6,7 @@ let BallNumber = 23;
 let Game = "continue";
 let Time = 0;
 let timeFrame;
+let Planet = createPlanetImg();
 const WIDTH = canvas.width;
 const HEIGHT = canvas.height;
 const SHIPTOP = 70;
@@ -35,7 +36,7 @@ function createBalls(objectList, numberOfBalls) {
         leftAcc = getRandom(-4,4);
         topAcc = getRandom(-4,4);
         } while ( ((leftAcc==0)&(topAcc==0)) || (ifCollideAnyObject(left,top,radius,objectList)) );
-        let ball = new Ball(left, top, radius, color, leftAcc, topAcc);
+        let ball = new Ball(left, top, radius, color, leftAcc, topAcc, Planet[i%6]);
         objectList.push(ball);
     }
 }
@@ -147,4 +148,14 @@ function displayScoreAndLife() {
     ctx.fillStyle = "yellow";
     ctx.fillText("Life: "+"♥".repeat(battleShip.life),30,30);
     ctx.fillText("Score: "+battleShip.score, 30,50);
+}
+
+function createPlanetImg() {
+    let arr=[];
+    let c;
+    for (let i = 1; i<=6; i++) {
+        c = document.getElementById("Planet"+i);
+        arr.push(c);
+    }
+    return arr;
 }
