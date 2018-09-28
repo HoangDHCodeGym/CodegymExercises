@@ -152,6 +152,8 @@ function displayScoreAndLife() {
     ctx.fillStyle = "yellow";
     ctx.fillText("Life: " + "♥".repeat(battleShip.life), 30, 30);
     ctx.fillText("Score: " + battleShip.score, 30, 50);
+    ctx.fillText("Press A and S to fire", 30, 70);
+
 }
 
 function createPlanetImg() {
